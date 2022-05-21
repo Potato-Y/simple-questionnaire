@@ -1,0 +1,54 @@
+.contents-box{
+    font-family: "Nanum Gothic";
+    width: 60%;
+    min-width: 300px;
+}
+
+#comment{
+    margin-bottom: 40px;
+}
+
+.input-box{
+    width: 80%;
+    margin-top: 17px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#send-button{
+    margin-top: 23px;   
+    position: relative;
+    left: 50%;  
+    transform: translateX(-50%);
+}
+
+#privacy-policy-modal-open-button{
+    margin-left: 24px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #3151FF;
+    text-decoration: underline;
+    border: 0;
+    outline: 0;
+}
+
+#privacy-policy-modal{
+    width: 80%;
+}
+
+#privacy-policy-modal-title{
+    margin: 30px;
+    text-align: center;
+    font-size: 25px;
+}
+
+#privacy-policy-modal-contents{
+    margin: 30px;
+}
+
+#privacy-policy-modal-close-button {
+    margin-bottom: 30px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
