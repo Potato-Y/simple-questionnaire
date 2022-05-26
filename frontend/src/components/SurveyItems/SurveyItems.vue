@@ -49,11 +49,14 @@
       </div>
     </div>
 
-    <it-button id="send-button" type="primary">완료</it-button>
+    <it-button @click="upload_data()" id="send-button" type="primary"
+      >완료</it-button
+    >
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import PrivacyPolicyContents from "./PrivacyPolicyContents.vue";
 
 export default {
@@ -68,6 +71,42 @@ export default {
       privacyConsent: false,
       privacyPolicyModal: false,
     };
+  },
+  methods: {
+    upload_data() {
+      if (!this.privacyConsent) {
+        // 동의 확인
+        return alert("개인정보 수집 및 처리 동의를 확인해주세요.");
+      }
+
+      if (isNaN(this.inputNumber)) {
+        return alert("전화번호는 숫자만 입력해주세요.");
+      }
+
+      var data = "";
+      const addData = (id, contents) => {
+        // post로 보내기 위해 data에 양식에 맞게 저장한다.
+        data += `${id}=${contents}&`;
+      };
+
+      addData("name", this.inputName);
+      addData("phone_number", this.inputNumber);
+      addData("privacy_policy", this.privacyConsent);
+
+      axios.post("/api/v1/upload_data", data).then((response) => {
+        console.log(response.data.db_process);
+        if (response.data.db_process == true) {
+          alert("저장되었습니다.");
+          location.reload();
+        } else {
+          if (response.data.message == "number") {
+            return alert("번호를 다시 확인해주세요.");
+          }
+          alert("저장에 실패하였습니다.");
+          return;
+        }
+      });
+    },
   },
 };
 </script>
